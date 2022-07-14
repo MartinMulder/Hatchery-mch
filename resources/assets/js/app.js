@@ -156,7 +156,7 @@ window.lintFile = function () {
 	});
 };
 
-window.onload = function () {
+$( window ).on('load', function() {
 	const ext = document.getElementById('extension');
 	let langmode = 'python';
 	if (ext) {
@@ -317,4 +317,4 @@ window.onload = function () {
                     '</div>';
 			});
 	}
-};
+});
