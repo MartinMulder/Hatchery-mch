@@ -53,7 +53,7 @@
         @endauth
     </script>
 </head>
-<body>
+<body class="splash">
     @include('partials.messages')
     <img class="logo" src="/img/corner.png" alt="MCH2022 corner" />
     @yield('content')

@@ -52,6 +52,9 @@ class Linters
             1 => ['pipe', 'w'], // stdout is a pipe that the child will write to
             2 => ['pipe', 'w'], // stderr is a pipe that the child will write to
         ];
+	
+	if ($command == "pyflakes") $command = "pyflakes3";
+
         $process = proc_open($command, $fds, $pipes, null, null);
         if (is_resource($process)) {
             fwrite($pipes[0], $content . "\n");   // insert trailing newline ;)

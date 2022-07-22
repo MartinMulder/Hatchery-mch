@@ -9,8 +9,13 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="csrfToken" content="{{ csrf_token() }}">
-    <title>{{ request()->getHost() }} {{ config('app.name', 'Hatchery') }}</title>
-    <meta name="description" content="A platform to publish and develop software for several electronic badges.">
+
+    <title>{{ config('app.name', 'Hatchery') }}</title>
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css', !App::environment(['local', 'testing', 'docker'])) }}?v=1.0" rel="stylesheet">
+    <link href="{{ asset('css/mch.css', !App::environment(['local', 'testing', 'docker'])) }}?v=1.0" rel="stylesheet">
+    <livewire:styles>
 
     <meta name="theme-color" content="#F2DAC7">
     <link rel="icon" type="image/x-icon" sizes="16x16" href="{{ asset('favicon.ico') }}">
@@ -18,45 +23,25 @@
     <link rel="apple-touch-icon" sizes="640x640" href="{{ asset('img/bs.png') }}">
     <link rel="canonical" href="{{ url()->current() }}" />
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css', !App::environment(['local', 'testing', 'docker'])) }}?v=1.0" rel="stylesheet">
-    <link href="{{ asset('css/mch.css', !App::environment(['local', 'testing', 'docker'])) }}?v=1.0" rel="stylesheet">
-    <livewire:styles>
-
-    <style>
-	html {
-		background-color: white;
-	}
-	.links > a {
-		letter-spacing: .1rem;
-        margin: 10px;
-        width: 142px;
-	}
-
-	h1.hatcher {
-		font-size: 76px;
-		font-weight: 400;
-	}
-	.table-condensed th {
-		text-align: center;
-	}
-	.spacer { 
-		height: 2em;
-	}
-    </style>
+    <!-- Scripts -->
     <script>
         window.Laravel = {!! json_encode([
-                'csrfToken' => csrf_token(),
-            ]) !!};
+            'csrfToken' => csrf_token(),
+        ]) !!};
         @auth
         window.UserId = {{ Auth::user()->id }};
         @endauth
     </script>
+
 </head>
-<body>
-    @include('partials.messages')
-    <img class="logo" src="/img/corner.png" alt="MCH2022 corner" />
-    @yield('content')
+<body class="h-100 d-flex flex-column mch-bg-color">
+    @include('partials.nav')
+    <div id="app">
+        @include('partials.messages')
+	<div class="container-fluid px-0 px-lg-5 mch-bg-color">
+	        @yield('content')
+	</div>
+    </div>
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -77,7 +62,7 @@
     <livewire:scripts>
 
     @yield('script')
-    <footer class="bg-light text-center text-lg-start">
+    <footer class="footer mt-auto mch-font-color">
         <!-- Copyright -->
         <div class="text-center p-3">
             © {{ date('Y') }} badge.team Hatchery

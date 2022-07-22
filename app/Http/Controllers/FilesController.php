@@ -62,7 +62,8 @@ class FilesController extends Controller
     public function edit(File $file): View
     {
         return view('files.edit')
-            ->with('file', $file);
+		->with('project', $file->version->project)
+		->with('file', $file);
     }
 
     /**

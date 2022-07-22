@@ -1,5 +1,5 @@
 {{ Form::label('dependencies', 'Dependencies', ['class' => 'control-label']) }}
-<select multiple="multiple" name="dependencies[]" id="dependencies" class="form-control">
+<select multiple="multiple" name="dependencies[]" id="dependencies" class="form-select">
     @foreach(App\Models\Project::whereHas('versions', function ($query) {
                 $query->published();
             })->get()->reverse() as $dep)
@@ -9,7 +9,7 @@
     @endforeach
 </select>
 
-<strong>Dependants</strong>
+<label class="form-label mch-font-color">Dependants</label>
 <ul>
 @forelse($project->dependants as $dependant)
     <li>

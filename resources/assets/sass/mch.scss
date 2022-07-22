@@ -1,0 +1,139 @@
+
+// Variables
+@import "mchvars";
+@import url('https://fonts.googleapis.com/css2?family=Saira+Condensed&display=swap');
+
+.title-font {
+	font-family: 'Saira Condensed', sans-serif;
+	color: $mch_font_color;
+}
+
+h1.hatcher {
+	font-family: 'Saira Condensed', sans-serif;
+	font-size: 6em;
+	transform: skew(30deg);
+	color: $mch_font_color;
+}
+
+.title {
+	border: 13px solid hsla(0,0%,93.3%,.6666666666666666) ;
+	border-radius: 20px;
+	padding: .5em;
+	transform: skew(-30deg);
+	background-color: $mch_bg_color;
+	margin: 2.35em;
+}
+body.splash {
+	background-image: url('../../../public/img/mch/wallpaper.png');
+}
+
+.bg-wallpaper {
+	background-image: url('../../../public/img/mch/wallpaper.png');
+	color: $mch_font_color;
+}
+
+
+body {
+	.container div:not(.title) {
+		background: #eee;
+	}
+
+	.navbar {
+		padding-top: 0;
+	}
+
+	.navbar-default .navbar-nav > li > a {
+		color: $mch_font_color;
+	}
+}
+
+.mch-bg-color {
+	background-color: $mch_bg_color;
+}
+
+.mch-font-color {
+	color: $mch_font_color !important;
+	font-weight: bold;
+	font-family: 'Saira Condensed', sans-serif;
+}
+.mch-font-bg-color {
+	color: $mch_font_color !important;
+	background-color: $mch_bg_color;
+	font-weight: bold;
+	font-family: 'Saira Condensed', sans-serif;
+}
+.bg-palette0 { 
+	background-color: $mch_palette0;
+}
+.bg-palette1 { 
+	background-color: $mch_palette1;
+}
+.bg-palette2 { 
+	background-color: $mch_palette2;
+}
+.bg-palette3 { 
+	background-color: $mch_palette3;
+}
+
+.font-palette0 { 
+	color: $mch_palette0;
+}
+.font-palette1 { 
+	color: $mch_palette1;
+}
+.font-palette2 { 
+	color: $mch_palette2;
+}
+.font-palette3 { 
+	color: $mch_palette3;
+}
+.logo {
+	display: none;
+}
+
+@media screen and (prefers-color-scheme: dark) {
+  body {
+	  background-color: $mch_bg_color;
+  }
+  body,
+  .navbar-default,
+  .navbar-default .navbar-brand,
+  .panel-default .panel-heading,
+  input,
+  select,
+  select option,
+  .pagination > li > a,
+  .navbar-default .navbar-nav li a,
+  .pagination > li > span,
+  .pagination > .disabled > span,
+  .form-control,
+  .modal-content {
+    background-color: $mch_bg_color;
+    color: #fff;
+  }
+
+  code,
+  pre {
+
+    background-color: $mch_bg_color;
+  }
+
+  pre {
+    color: #f5f5f5;
+  }
+
+  .table-striped > tbody > tr:nth-of-type(odd),
+  .dropdown-menu {
+    background-color: #0a1520;
+  }
+
+  a {
+    color: #98ccf7;
+  }
+
+  a:hover,
+  .navbar-default .navbar-brand:hover,
+  .navbar-default .navbar-nav li a:hover {
+    color: #2ab27b;
+  }
+}

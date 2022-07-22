@@ -1,22 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Profile
-                        <div class="pull-right">
-                            <a class="btn btn-default btn-xs" href="{{ route('users.show', ['user' => $user->id])  }}">show</a>
-                            @can('delete', $user)
-                            {!! Form::open(['method' => 'delete', 'route' => ['users.destroy', 'user' => $user->id], 'class' => 'deleteform']) !!}
-                            <button class="btn btn-danger btn-xs" name="delete-resource" type="submit" data-bs-toggle="modal" data-bs-target="#confirm-delete" value="delete">delete</button>
-                            {!! Form::close() !!}
-                            @endcan
-                        </div>
-                    </div>
-                    <div class="panel-body">
+                        <x-page-panel title="Profile">
+                        	<x-slot name="actions">
+				    <a class="btn btn-default btn-xs" href="{{ route('users.show', ['user' => $user->id])  }}">show</a>
+				    @can('delete', $user)
+				    {!! Form::open(['method' => 'delete', 'route' => ['users.destroy', 'user' => $user->id], 'class' => 'deleteform']) !!}
+				    <button class="btn btn-danger btn-xs" name="delete-resource" type="submit" data-bs-toggle="modal" data-bs-target="#confirm-delete" value="delete">delete</button>
+				    {!! Form::close() !!}
+				    @endcan
+				 </x-slot>
                         {!! Form::open(['method' => 'put', 'route' => ['users.update', 'user' => $user->id], 'class' => "form-horizontal"]) !!}
 
                             {{ csrf_field() }}
@@ -121,10 +114,7 @@
                                 </div>
                             </div>
                         @include('partials.projects')
-                </div>
-            </div>
-        </div>
-    </div>
+		</x-page-panel>
 
     <div id="confirm-delete" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">

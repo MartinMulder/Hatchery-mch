@@ -1,4 +1,71 @@
-<table class="table table-striped">
+<div class="container-fluid g-0">
+	<div class="row g-0 mch-font-color border-bottom">
+		<div class="col-4">
+			File
+		</div>
+		<div class="col-3 d-none d-xxl-block">
+			Last edited	
+		</div>
+		<div class="col-1">
+			Size
+		</div>
+		<div class="col-2 d-none d-xxl-block">
+			Process
+		</div>
+        	@if(Auth::user()->can('update', $project->versions->last()->files()->first()))
+		<div class="col">
+		    {!! Form::open(['method' => 'get', 'route' => 'files.create']) !!}
+		    {{ Form::hidden('version', $project->versions->last()->id) }}
+		    <button class="btn btn-success" type="submit" value="add"><span class="bi-file-earmark-plus"></span></button>
+		    {!! Form::close() !!}
+		</div>
+		@endif
+		@php
+			$hasIcon = false;
+		@endphp
+	</div>
+	@forelse($project->versions->last()->files()->paginate() as $file)
+	<div class="row g-0">
+		<div class="col-4">
+			@if($file->editable && Auth::user()->can('update', $file))
+			<a href="{{ route('files.edit', ['file' => $file->id]) }}">{{ $file->name }}</a>
+			@else
+			<a href="{{ route('files.show', ['file' => $file->id]) }}">{{ $file->name }}</a>
+			@endif
+			@if ($file->name === 'icon.py')
+			    @php
+				$hasIcon = true;
+			    @endphp
+			@endif
+		</div>
+		<div class="col-3 d-none d-xxl-block">
+		    {{ $file->updated_at }}
+		</div>
+		<div class="col-1">
+			{{ $file->size_formatted }}
+		</div>
+		<div class="col-2 d-none d-xxl-block">
+			@can('process', $file)
+				{!! Form::open(['method' => 'post', 'route' => ['files.process', 'file' => $file->id]]) !!}
+				<button class="btn btn-success btn-xs" name="process-resource" type="submit" value="proccess"  style="width: 48px;">synth</button>
+				{!! Form::close() !!}
+			@endcan
+		</div>
+		@can('delete', $file)
+		<div class="col">
+			{!! Form::open(['method' => 'delete', 'route' => ['files.destroy', 'file' => $file->id]]) !!}
+			<button class="btn btn-danger" name="delete-resource" type="submit" value="delete" data-bs-toggle="modal" data-bs-target="#confirm-delete"><span class="bi-trash3"></span></button>
+			{!! Form::close() !!}
+		</div>
+		@endcan
+	</div>
+	@empty
+	<div class="row g-0">
+	    <div class="col">No files yet</div>
+	</div>
+	@endforelse
+</div>
+<table class="table table-striped table-sm">
     <thead>
     <tr>
         <th>File</th>
@@ -9,7 +76,7 @@
         @if(Auth::user()->can('update', $project->versions->last()->files()->first()))
             {!! Form::open(['method' => 'get', 'route' => 'files.create']) !!}
             {{ Form::hidden('version', $project->versions->last()->id) }}
-            <button class="btn btn-success btn-xs" type="submit" value="add" style="width: 48px;">add</button>
+            <button class="btn btn-success" type="submit" value="add"><span class="bi-file-earmark-plus"></span></button>
             {!! Form::close() !!}
         @endif
         </th>
@@ -45,7 +112,7 @@
             <td>
 		@can('delete', $file)
                 {!! Form::open(['method' => 'delete', 'route' => ['files.destroy', 'file' => $file->id]]) !!}
-                <button class="btn btn-danger btn-xs" name="delete-resource" type="submit" value="delete" data-bs-toggle="modal" data-bs-target="#confirm-delete" style="width: 48px;">delete</button>
+                <button class="btn btn-danger" name="delete-resource" type="submit" value="delete" data-bs-toggle="modal" data-bs-target="#confirm-delete"><span class="bi-trash3"></span></button>
 		        {!! Form::close() !!}
 		@endcan
             </td>

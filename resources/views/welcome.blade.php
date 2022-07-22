@@ -1,4 +1,4 @@
-@extends('layouts.app_splash')
+@extends('layouts.mch.app_splash')
 
 @section('content')
 <div class="container">

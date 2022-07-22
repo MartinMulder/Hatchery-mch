@@ -1,20 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.mch.app')
 
 @section('content')
-<div class="container-fluid">
-
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-
-            <div class="panel panel-default">
-
-                <div class="panel-heading">
-                    <strong>Add an Egg</strong>
-                </div>
-
-                <div class="panel-body">
-                    <div class="row">
-
+                <x-page-panel title="Add an Egg">
                         <div class="col-md-12 clearfix">
                             {!! Form::open(['method' => 'post', 'route' => [$type === 'import' ? 'projects.import.git' : 'projects.store']]) !!}
                                 <div class="form-group @if($errors->has('category_id')) has-error @endif">
@@ -67,19 +54,13 @@
 
                                 <input name="status" type="hidden" value="3" />
 
-                                <div class="pull-right">
-                                    <button type="submit" class="btn btn-default">{{ $type === 'import' ? 'Import' : 'Save' }}</button>
+                                <div class="float-end">
+                                    <button type="submit" class="btn btn-default bg-palette3">{{ $type === 'import' ? 'Import' : 'Save' }}</button>
                                 </div>
 
                             {!! Form::close() !!}
                         </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+		</x-page-panel>
 @endsection
 @section('script')
     <script>

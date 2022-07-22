@@ -51,6 +51,7 @@
     "yarn-upgrade-all": "^0.7.1"
   },
   "dependencies": {
+    "bootstrap-icons": "^1.8.3",
     "laravel-echo": "^1.11.4",
     "markdownlint-cli": "^0.31.1",
     "socket.io-client": "^4.4.1"

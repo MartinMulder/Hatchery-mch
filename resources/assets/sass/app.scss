@@ -2,15 +2,31 @@
 // Fonts
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 
-// Variables
-@import "variables";
-
 // Bootstrap
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "node_modules/bootstrap/scss/functions";
+@import '~bootstrap/scss/bootstrap';
+@import '~bootstrap-icons/font/bootstrap-icons.css';
+///@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "node_modules/dropzone/dist/dropzone";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
 @import "node_modules/codemirror/lib/codemirror";
 @import "node_modules/codemirror/theme/ambiance";
 @import "node_modules/codemirror/addon/dialog/dialog";
+
+// Variables
+@import "variables";
+@import "~bootstrap/scss/variables";
+@import "mchvars";
+
+.page_container {
+	@include make-container('10em');
+}
+
+.content-row {
+	background-color: hsla(0,0%,100%,.75);
+	border-radius: 10px;
+}
 
 body {
   min-height: 100vh;
@@ -161,7 +177,7 @@ body {
   .pagination > .disabled > span,
   .form-control,
   .modal-content {
-    background-color: #222;
+    background-color: $mch_bg_color;
     color: #fff;
   }
 
